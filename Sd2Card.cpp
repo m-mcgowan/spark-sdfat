@@ -17,7 +17,9 @@
  * along with the Arduino Sd2Card Library.  If not, see
  * <http://www.gnu.org/licenses/>.
  */
+
 #include <Sd2Card.h>
+#ifndef NO_SDCARD
 #include <SdSpi.h>
 // debug trace macro
 #define SD_TRACE(m, b)
@@ -614,3 +616,4 @@ bool Sd2Card::writeStop() {
   chipSelectHigh();
   return false;
 }
+#endif

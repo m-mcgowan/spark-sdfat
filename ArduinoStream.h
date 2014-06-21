@@ -50,10 +50,12 @@ class ArduinoInStream : public ibufstream {
     while (!m_hw->available());
 
     while (1) {
+#ifdef SPARK
       t = millis();
       while (!m_hw->available()) {
         if ((millis() - t) > 10) goto done;
       }
+#endif      
       if (i >= (m_size - 1)) {
         setstate(failbit);
         return;

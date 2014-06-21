@@ -77,6 +77,7 @@ class SdVolume {
    * failure include not finding a valid partition, not finding a valid
    * FAT file system or an I/O error.
    */
+
   bool init(Sd2Card* dev) { return init(dev, 1) ? true : init(dev, 0);}
   bool init(Sd2Card* dev, uint8_t part);
 

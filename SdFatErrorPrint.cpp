@@ -113,9 +113,11 @@ void SdFat::initErrorHalt_P(PGM_P msg) {
 void SdFat::initErrorPrint() {
   if (m_card.errorCode()) {
     pstrPrintln(PSTR("Can't access SD card. Do not reformat."));
+#ifndef NO_SDCARD
     if (m_card.errorCode() == SD_CARD_ERROR_CMD0) {
       pstrPrintln(PSTR("No card, wrong chip select pin, or SPI problem?"));
     }
+#endif    
     errorPrint();
   } else if (m_vol.fatType() == 0) {
     pstrPrintln(PSTR("Invalid format, reformat SD."));

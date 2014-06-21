@@ -22,6 +22,7 @@
 #include <SdFatUtil.h>
 #ifdef __arm__
 // should use uinstd.h to define sbrk but Due causes a conflict
+#include <malloc.h>
 extern "C" char* sbrk(int incr);
 #else  // __ARM__
 extern char *__brkval;
@@ -33,8 +34,13 @@ extern char __bss_end;
  */
 int SdFatUtil::FreeRam() {
   char top;
+
 #ifdef __arm__
+#ifdef SPARK
   return &top - reinterpret_cast<char*>(sbrk(0));
+#else
+  return 0;
+#endif  
 #else  // __arm__
   return __brkval ? &top - __brkval : &top - &__bss_end;
 #endif  // __arm__

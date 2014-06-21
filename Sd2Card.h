@@ -24,9 +24,11 @@
  * \brief Sd2Card class for V2 SD/SDHC cards
  */
 #include <Arduino.h>
+
 #include <SdFatConfig.h>
 #include <SdInfo.h>
-#include <SdSpi.h>
+
+#ifndef NO_SDCARD
 //------------------------------------------------------------------------------
 /** Set SCK to max rate of F_CPU/2. */
 uint8_t const SPI_FULL_SPEED = 2;
@@ -219,5 +221,25 @@ class Sd2Card {
   uint8_t m_sckDivisor;
   uint8_t m_status;
   uint8_t m_type;
+
 };
+#else
+
+class Sd2Card {
+public:  
+  bool readData(uint8_t *dst);
+  bool readStart(uint32_t blockNumber);
+  bool readStop();
+
+    bool readBlock(uint32_t block, uint8_t* dst);  
+  bool writeBlock(uint32_t blockNumber, const uint8_t* src);
+  bool writeData(const uint8_t* src);
+  bool writeStart(uint32_t blockNumber, uint32_t eraseCount);
+  bool writeStop();
+int errorCode() const { return 0; }  
+int errorData() const { return 0; }    
+};
+
+#endif // NO_SDCARD
+
 #endif  // SpiCard_h

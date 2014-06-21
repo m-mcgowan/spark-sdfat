@@ -40,6 +40,8 @@
 #include <ArduinoStream.h>
 #include <MinimumSerial.h>
 //------------------------------------------------------------------------------
+
+
 /**
  * \class SdFat
  * \brief Integration class for the %SdFat library.
@@ -47,7 +49,7 @@
 class SdFat {
  public:
   SdFat() {}
-  /** \return a pointer to the Sd2Card object. */
+    /** \return a pointer to the Sd2Card object. */
   Sd2Card* card() {return &m_card;}
   bool chdir(bool set_cwd = false);
   bool chdir(const char* path, bool set_cwd = false);
@@ -57,8 +59,12 @@ class SdFat {
   void errorPrint();
   void errorPrint(char const *msg);
   bool exists(const char* name);
+#ifndef NO_SDCARD
   bool begin(uint8_t chipSelectPin = SD_CHIP_SELECT_PIN,
     uint8_t sckDivisor = SPI_FULL_SPEED);
+#else
+  bool begin();
+#endif  
   void initErrorHalt();
   void initErrorHalt(char const *msg);
   void initErrorPrint();

@@ -170,6 +170,8 @@ class ostream : public virtual ios {
     putNum((uint32_t)arg);
     return *this;
   }
+
+#if !defined(__arm__) && !defined(SPARK)
   /** Output signed long
    * \param[in] arg value to output
    * \return the stream
@@ -186,6 +188,8 @@ class ostream : public virtual ios {
     putNum(arg);
     return *this;
   }
+#endif
+  
   /** Output pointer
    * \param[in] arg value to output
    * \return the stream

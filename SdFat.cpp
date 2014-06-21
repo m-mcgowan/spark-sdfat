@@ -37,10 +37,17 @@ Print* SdFat::m_stdOut = &MiniSerial;
  * \return The value one, true, is returned for success and
  * the value zero, false, is returned for failure.
  */
+#if DEVICE 
+bool SdFat::begin() {
+  return m_vol.init(&m_card) && chdir(1);
+}
+
+#else
 bool SdFat::begin(uint8_t chipSelectPin, uint8_t sckDivisor) {
   return m_card.begin(chipSelectPin, sckDivisor)
          && m_vol.init(&m_card) && chdir(1);
 }
+#endif
 //------------------------------------------------------------------------------
 /** Change a volume's working directory to root
  *
