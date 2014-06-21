@@ -28,6 +28,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>README.md</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -91,6 +92,8 @@
       <item path="MinimumSerial.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MinimumSerial.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sd2Card.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -201,6 +204,8 @@
       <item path="MinimumSerial.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MinimumSerial.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Sd2Card.cpp" ex="false" tool="1" flavor2="0">
       </item>
